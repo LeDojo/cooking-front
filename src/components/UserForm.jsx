@@ -1,4 +1,4 @@
-import { Button } from "@chakra-ui/react";
+import { Button, useToast } from "@chakra-ui/react";
 import { FormControl, FormLabel } from "@chakra-ui/form-control";
 import { Input } from "@chakra-ui/input";
 import { Box } from "@chakra-ui/layout";
@@ -6,6 +6,7 @@ import axios from "axios";
 import React, { useState } from "react";
 
 function UserForm() {
+  const toast = useToast();
   const [newUser, setNewUser] = useState({
     name: { first: "", last: "" },
     email: "",
@@ -18,6 +19,13 @@ function UserForm() {
         `http://localhost:4567/users/register`,
         newUser
       );
+      toast({
+        title: "utilisateur Crée",
+        description: "Un Utilisateur à bien été ajouté avec succès",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
       setUsers([...users, response.data]);
       setNewUser({
         name: { first: "", last: "" },
