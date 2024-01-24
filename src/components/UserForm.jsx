@@ -1,4 +1,4 @@
-import { Button, useToast } from "@chakra-ui/react";
+import { Button, useToast, Heading } from "@chakra-ui/react";
 import { FormControl, FormLabel } from "@chakra-ui/form-control";
 import { Input } from "@chakra-ui/input";
 import { Box } from "@chakra-ui/layout";
@@ -20,13 +20,12 @@ function UserForm() {
         newUser
       );
       toast({
-        title: "utilisateur Crée",
+        title: "nouvel Utilisateur 🏖",
         description: "Un Utilisateur à bien été ajouté avec succès",
         status: "success",
         duration: 3000,
         isClosable: true,
       });
-      setUsers([...users, response.data]);
       setNewUser({
         name: { first: "", last: "" },
         email: "",
@@ -38,8 +37,10 @@ function UserForm() {
     }
   };
   return (
-    <Box p={4} maxW="md" borderWidth="1px" borderRadius="lg">
-      <h2>Créer un nouvel utilisateur </h2>
+    <Box maxW="400px" m="auto" mt="4">
+      <Heading as="h2" mb="4" textAlign="center">
+        Ajouter un nouvel utilisateur
+      </Heading>
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -96,7 +97,7 @@ function UserForm() {
         <FormControl mb={4} isRequired>
           <FormLabel>Mot de passe:</FormLabel>
           <Input
-            type="text"
+            type="password"
             value={newUser.password}
             onChange={(e) =>
               setNewUser({ ...newUser, password: e.target.value })
