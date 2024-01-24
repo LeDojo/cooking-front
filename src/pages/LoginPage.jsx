@@ -9,9 +9,11 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 function LoginPage() {
+  const { login } = useAuth();
   const navigate = useNavigate();
   const toast = useToast();
 
@@ -21,8 +23,11 @@ function LoginPage() {
   });
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const { email, password } = e.target.elements;
     try {
       navigate("/courses");
+      const user = { email: "wilima@peel.me" };
+      login(user);
     } catch (error) {
       toast({
         title: "Erreur de connexion 💥",
