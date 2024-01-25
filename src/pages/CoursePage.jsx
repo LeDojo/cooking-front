@@ -1,8 +1,11 @@
 import React from 'react'
+import CourseList from '../components/CourseList'
 
 function CoursePage() {
   return (
-    <div>CoursePage</div>
+    <div>
+      <CourseList />
+    </div>
   )
 }
 
