@@ -1,12 +1,11 @@
 import { Box, Flex, Heading, Link } from "@chakra-ui/layout";
 import { Button, Text } from "@chakra-ui/react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
 function Navbar() {
   const navigate = useNavigate();
-  const { currentUser, logout } = useAuth();
+  const userData = JSON.parse(localStorage.getItem("user"))
   const handleLogout = async () => {
-    await logout();
+    localStorage.removeItem("user");
     navigate("/login");
   };
   return (
@@ -28,9 +27,9 @@ function Navbar() {
           <Link as={RouterLink} to="/subscribers" p="4">
             Subscribers
           </Link>
-          {currentUser ? (
+          {userData ? (
             <>
-              <Text mr={4}>{currentUser.email}</Text>
+              <Text mr={4}>{userData.email}</Text>
               <Button onClick={handleLogout} size="xs">
                 Deconnexion
               </Button>
