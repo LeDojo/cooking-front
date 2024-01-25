@@ -38,7 +38,7 @@ const LoginForm = () => {
         duration: 3000,
         isClosable: true,
       });
-      navigate('/Home')
+      navigate('/')
     } catch (error) {
       console.error("Erreur lors du login: ", error.message);
       toast({
